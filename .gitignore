@@ -1,0 +1,7 @@
+target/
+notes.md
+tera_notes.md
+.idea/
+static/bootstrap*
+.env
+migrations/

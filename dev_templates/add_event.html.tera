@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include 'bootstrap' %}
+    <title>{{page}}</title>
+</head>
+<body style="background-color: black">
+<div class="container my-3" style="background-color: white">
+    <div class="text-center my-2">
+        <h2 style="color: #25cff2" class="fw-bolder text-capitalize">Add event to 2021 calendar</h2>
+    </div>
+
+    {% if ok %}
+
+        {% if message|length > 0 %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endif %}
+
+    {% else %}
+        <div class="alert alert-danger">
+            {{ message }}
+        </div>
+    {% endif %}
+    <div class="mx-auto p-2">
+        <form method="post">
+            <div class="mb-3">
+                <label for="event-date" class="form-label">Event Date</label>
+                <input type="date" name="date" id="event-date" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="event-title" class="form-label">Event title</label>
+                <input type="text" name="title" id="event-title" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="event-body" class="form-label">Event body</label>
+                <input type="text" name="body" id="event-body" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="auth-key" class="form-label">Auth key</label>
+                <input type="text" name="auth_key" id="auth-key" class="form-control">
+            </div>
+            <button type="submit"class="btn btn-primary">Submit</button>
+        </form>
+
+    </div>
+</div>
+</body>
+</html>

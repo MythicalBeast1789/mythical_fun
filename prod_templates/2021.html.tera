@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+    {% include 'bootstrap' %}
+    <title>Welcome!</title>
+</head>
+<body style="background-color:black">
+
+</div>
+<div class="container-md my-4 p-3 bg-dark">
+    <div class="text-center my-2">
+        <h2 style="color: #25cff2" class="fw-bolder text-capitalize">2021 events:</h2>
+    </div>
+
+    <div class="card">
+        <!-- sort events by month (needs work) -->
+        <!-- TODO: create loop for each month of event -->
+        <div class="card-header">
+            January:
+        </div>
+        <div class="card-body">
+            <!-- loop through each event, adding it to an acordian item -->
+            {% for event in events %}
+            <div class="accordion" id="list-{{loop.index}}">
+                <div class="accordion-item my-sm-1 my-2">
+                    <h6 class="accordion-header" id="h-{{loop.index}}">
+                        <!-- header + button that shows the details of the vent -->
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c-{{loop.index}}" aria-expanded="false" aria-controls="c-{{loop.index}}">
+                            <!-- format title as **date** title -->
+                            <!-- TODO: make pretty -->
+                            <span class="fw-bold mx-3 mx-sm-1" >{{event.date}}</span>
+                            {{event.title}}
+                        </button>
+                    </h6>
+                    <!-- event details body -->
+                    <div id="c-{{loop.index}}" class="accordion-collapse collapse" aria-labelledby="h-{{loop.index}}" data-bs-target="list-{{loop.index}}">
+                        <!-- TODO: render html in body. Ex. href -->
+                        <div class="p-2">
+                        {{event.body}}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+</body>
+</html>

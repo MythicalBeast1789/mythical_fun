@@ -1,5 +1,4 @@
 use chrono::NaiveDate;
-use super::schema::events;
 
 #[derive(Queryable)]
 pub struct Event {

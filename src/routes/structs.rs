@@ -1,8 +1,8 @@
-pub mod events;
-use serde::{Serialize};
+use serde::{Serialize, Deserialize};
+
 #[derive(Serialize)]
 pub struct TemplateContext {
     pub page: String,
-    pub ok: bool,
     pub message: String,
+    pub ok: bool
 }

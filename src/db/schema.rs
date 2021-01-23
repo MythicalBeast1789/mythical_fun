@@ -16,14 +16,12 @@ table! {
         email -> Varchar,
         password -> Varchar,
         share_code -> Varchar,
-        joined_on -> Nullable<Timestamp>,
     }
 }
 
 joinable!(events -> users (user_id));
 
 allow_tables_to_appear_in_same_query!(
-    days_of_events,
     events,
     users,
 );

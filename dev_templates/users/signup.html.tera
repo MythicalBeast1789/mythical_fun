@@ -1,0 +1,42 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% include 'bootstrap' %}
+    <title>2021 events</title>
+</head>
+<body style="background-color: black">
+    <div class="container-sm my-4 p-3 bg-dark">
+
+        <div class="card">
+            {% include 'utils/message' %}
+            <h3 class="text-center my-3">Welcome!</h3>
+            <div class="card-body">
+                <form class="mx-5" action="/users/signup" method="post">
+                    <div class="row mb-3 g-2 ">
+                        <div class="col-2 col-sm-10">
+                            <label for="first-name" class="col-form-label">First name:</label>
+                        </div>
+                        <div class="col-8 col-sm-10">
+                            <input class="form-control" type="text" name="first_name" id="first-name" required>
+                        </div>
+                    </div>
+                    <div class="row mb-3 g-2">
+                        <label for="last-name" class="form-label col-2">Last Name: </label>
+                        <input class="form-control col-6" id="last-name" required name="last_name" type="text">
+                    </div>
+                    <div class="row mb-3 g-2">
+                        <label for="email" class="form-label col-2">Email:</label>
+                        <input class="form-control col-6" type="email" id="email" name="email" required>
+                    </div>
+                    <div class="row mb-3 g-2">
+                        <label for="password" class="form-label col-2">Password: </label>
+                        <input name="password" class="form-control col-6" id="password" required type="password"/>
+                    </div>
+                    <button class="btn-primary" type="submit">Submit!</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

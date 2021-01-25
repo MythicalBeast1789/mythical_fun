@@ -9,31 +9,30 @@
     <div class="container-sm my-4 p-3 bg-dark">
 
         <div class="card">
-            {% include 'utils/message' %}
-            <h3 class="text-center my-3">Welcome!</h3>
+            <h3 class="text-center my-3">Welcome New User!</h3>
+            <div class="alert alert-primary mx-5 mb-2 fs-6" role="alert">If you are new here, <a class="alert-link" href="/about">learn about us.</a> or if you are a returning user <a class="alert-link" href="/users/login">login!</a>
+            </div>
+            <div class="mx-3 mx-sm-1">
+                {% include 'utils/message' %}
+            </div>
             <div class="card-body">
                 <form class="mx-5" action="/users/signup" method="post">
-                    <div class="row mb-3 g-2 ">
-                        <div class="col-2 col-sm-10">
-                            <label for="first-name" class="col-form-label">First name:</label>
-                        </div>
-                        <div class="col-8 col-sm-10">
-                            <input class="form-control" type="text" name="first_name" id="first-name" required>
-                        </div>
+                    <div class="input-group mb-2">
+                        <span class="input-group-text" id="ln">Last Name:</span>
+<!--                        <div class="col-4"><label for="last-name" class="form-label ">Last Name: </label></div>-->
+                        <input class="form-control " id="last-name" required name="last_name" type="text" aria-labelledby="ln">
+
                     </div>
-                    <div class="row mb-3 g-2">
-                        <label for="last-name" class="form-label col-2">Last Name: </label>
-                        <input class="form-control col-6" id="last-name" required name="last_name" type="text">
+                    <div class="input-group mb-2">
+                        <span class="input-group-text" id="emlabel">Email: </span>
+                        <input class="form-control" aria-labelledby="emlabel" type="email" id="email" name="email" required>
+
                     </div>
-                    <div class="row mb-3 g-2">
-                        <label for="email" class="form-label col-2">Email:</label>
-                        <input class="form-control col-6" type="email" id="email" name="email" required>
+                    <div class="input-group mb-2">
+                        <span class="input-group-text" id="paslb">Password</span>
+                        <input name="password" class="form-control " id="password" required type="password" aria-labelledby="paslb"/>
                     </div>
-                    <div class="row mb-3 g-2">
-                        <label for="password" class="form-label col-2">Password: </label>
-                        <input name="password" class="form-control col-6" id="password" required type="password"/>
-                    </div>
-                    <button class="btn-primary" type="submit">Submit!</button>
+                    <button class="btn-primary btn" type="submit">Submit!</button>
                 </form>
             </div>
         </div>

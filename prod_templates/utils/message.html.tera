@@ -1,0 +1,13 @@
+{% if context.ok %}
+
+{% if context.message|length > 0 %}
+<div class="alert alert-info">
+    {{ context.message }}
+</div>
+{% endif %}
+
+{% else %}
+<div class="alert alert-danger">
+    {{ context.message }}
+</div>
+{% endif %}

@@ -1,0 +1,41 @@
+{{#*inline "page"}}
+    <div class="card container">
+        <div class="text-center">
+            <h3>Add Custom Event</h3>
+        </div>
+        {{> utils/err_alert}}
+        <div class="card-body">
+            <div class="mx-2">
+                <form class="form" method="post" action="/2021/add">
+                    <div class="input-group mb-2">
+                        <span id="event-date" class="input-group-text">
+                            Event Date:
+                        </span>
+                        <input name="event_date" type="date" class="form-control" aria-labelledby="event-date" min="2021-01-01" max="2021-12-31"  required>
+                    </div>
+
+                    <div class="input-group mb-2">
+                        <span id="evt-title" class="input-group-text">
+                            Event Title:
+                        </span>
+                        <input name="event_title" class="form-control" aria-labelledby="evt-title" type="text" required>
+                    </div>
+
+                    <div class="input-group mb-2">
+                        <span id="evt-body" class="input-group-text">
+                            Event Details:
+                        </span>
+                        <textarea name="event_body" aria-labelledby="evt-body" rows="3" class="form-control"></textarea>
+                    </div>
+                    <div class="mx-auto text-center">
+                        <button class="btn btn-primary" type="submit">Submit!</button>
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+{{/inline}}
+
+{{~>layout~}}

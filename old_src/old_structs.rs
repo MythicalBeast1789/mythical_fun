@@ -1,4 +1,3 @@
-pub mod events;
 use serde::{Serialize};
 #[derive(Serialize)]
 pub struct TemplateContext {

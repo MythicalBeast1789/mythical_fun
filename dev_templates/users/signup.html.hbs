@@ -1,0 +1,45 @@
+{{#*inline "page" }}
+
+<div class="container-sm my-4 p-3 bg-dark">
+
+        <div class="card">
+
+            <h3 class="text-center my-3">Welcome New User!</h3>
+
+            {{#if context.message }}
+                {{> utils/err_alert }}
+            {{else}}
+                <div class="alert alert-primary mx-5 mb-2 fs-6" role="alert">If you are new here, <a class="alert-link" href="/about">
+                    learn about us.</a> or if you are a returning user <a class="alert-link" href="/users/login">login!</a>
+                </div>
+            {{/if}}
+
+            <div class="card-body">
+                <form class="mx-5" action="/users/signup" method="post">
+
+                    <div class="input-group mb-2">
+                        <span class="input-group-text" id="fn">First Name:</span>
+                        <input class="form-control " id="first-name" required name="first_name" type="text" aria-labelledby="fn">
+
+                    </div>
+                    <div class="input-group mb-2">
+                        <span class="input-group-text" id="ln">Last Name:</span>
+                        <input class="form-control " id="last-name" required name="last_name" type="text" aria-labelledby="ln">
+
+                    </div>
+                    <div class="input-group mb-2">
+                        <span class="input-group-text" id="emlabel">Email: </span>
+                        <input class="form-control" aria-labelledby="emlabel" type="email" id="email" name="email" required>
+
+                    </div>
+                    <div class="input-group mb-2">
+                        <span class="input-group-text" id="paslb">Password</span>
+                        <input name="password" class="form-control " id="password" required type="password" aria-labelledby="paslb"/>
+                    </div>
+                    <button class="btn-primary btn" type="submit">Submit!</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{{/inline}}
+{{~>layout~}}

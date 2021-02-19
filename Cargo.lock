@@ -320,6 +320,7 @@ dependencies = [
  "chrono",
  "diesel_derives",
  "pq-sys",
+ "r2d2",
 ]
 
 [[package]]
@@ -459,6 +460,23 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9b919933a397b79c37e33b77bb2aa3dc8eb6e165ad809e58ff75bc7db2e34574"
 
 [[package]]
+name = "handlebars"
+version = "1.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d82e5750d8027a97b9640e3fefa66bbaf852a35228e1c90790efd13c4b09c166"
+dependencies = [
+ "lazy_static",
+ "log 0.4.11",
+ "pest",
+ "pest_derive",
+ "quick-error",
+ "regex",
+ "serde",
+ "serde_json",
+ "walkdir",
+]
+
+[[package]]
 name = "hashbrown"
 version = "0.9.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -566,6 +584,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "instant"
+version = "0.1.9"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "61124eeebbd69b8190558df225adf7e4caafce0d743919e5d6b19652314ec5ec"
+dependencies = [
+ "cfg-if 1.0.0",
+]
+
+[[package]]
 name = "iovec"
 version = "0.1.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -613,6 +640,15 @@ name = "libc"
 version = "0.2.81"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "1482821306169ec4d07f6aca392a4681f66c75c9918aa49641a2595db64053cb"
+
+[[package]]
+name = "lock_api"
+version = "0.4.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "dd96ffd135b2fd7b973ac026d28085defbe8983df057ced3eb4f2130b0831312"
+dependencies = [
+ "scopeguard",
+]
 
 [[package]]
 name = "log"
@@ -797,6 +833,31 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "2839e79665f131bdb5782e51f2c6c9599c133c6098982a54c794358bf432529c"
 
 [[package]]
+name = "parking_lot"
+version = "0.11.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6d7744ac029df22dca6284efe4e898991d28e3085c706c972bcd7da4a27a15eb"
+dependencies = [
+ "instant",
+ "lock_api",
+ "parking_lot_core",
+]
+
+[[package]]
+name = "parking_lot_core"
+version = "0.8.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "9ccb628cad4f84851442432c60ad8e1f607e29752d0bf072cbd0baf28aa34272"
+dependencies = [
+ "cfg-if 1.0.0",
+ "instant",
+ "libc",
+ "redox_syscall",
+ "smallvec",
+ "winapi 0.3.9",
+]
+
+[[package]]
 name = "pear"
 version = "0.1.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -917,6 +978,12 @@ dependencies = [
 ]
 
 [[package]]
+name = "quick-error"
+version = "1.2.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a1d01941d82fa2ab50be1e79e6714289dd7cde78eba4c074bc5a4374f650dfe0"
+
+[[package]]
 name = "quote"
 version = "0.6.13"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -932,6 +999,17 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "991431c3519a3f36861882da93630ce66b52918dcf1b8e2fd66b397fc96f28df"
 dependencies = [
  "proc-macro2 1.0.24",
+]
+
+[[package]]
+name = "r2d2"
+version = "0.8.9"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "545c5bc2b880973c9c10e4067418407a0ccaa3091781d1671d46eb35107cb26f"
+dependencies = [
+ "log 0.4.11",
+ "parking_lot",
+ "scheduled-thread-pool",
 ]
 
 [[package]]
@@ -1041,13 +1119,29 @@ version = "0.4.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9465babd59cfb360669b60431db510f3dc3268d51ccd69fc9264e626681e596a"
 dependencies = [
+ "diesel",
  "glob 0.3.0",
+ "handlebars",
  "log 0.4.11",
  "notify",
+ "r2d2",
  "rocket",
+ "rocket_contrib_codegen",
  "serde",
  "serde_json",
  "tera",
+]
+
+[[package]]
+name = "rocket_contrib_codegen"
+version = "0.4.6"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "fd30b50723c98c7ba6eea01cc5416e273397fa09ac45569538758ae24590dd7d"
+dependencies = [
+ "devise",
+ "quote 0.6.13",
+ "version_check 0.9.2",
+ "yansi",
 ]
 
 [[package]]
@@ -1105,6 +1199,21 @@ checksum = "93fc1dc3aaa9bfed95e02e6eadabb4baf7e3078b0bd1b4d7b6b0b68378900502"
 dependencies = [
  "winapi-util",
 ]
+
+[[package]]
+name = "scheduled-thread-pool"
+version = "0.2.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "dc6f74fd1204073fa02d5d5d68bec8021be4c38690b61264b2fdb48083d0e7d7"
+dependencies = [
+ "parking_lot",
+]
+
+[[package]]
+name = "scopeguard"
+version = "1.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d29ab0c6d3fc0ee92fe66e2d99f700eab17a8d57d1c1d3b748380fb20baa78cd"
 
 [[package]]
 name = "serde"

@@ -1,25 +1,29 @@
+{{#*inline "page" }}
 
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    {% include 'bootstrap' %}
-    <title>2021 events</title>
-</head>
-<body style="background-color: black">
-    <div class="container-sm my-4 p-3 bg-dark">
+<div class="container-sm my-4 p-3 bg-dark">
 
         <div class="card">
+
             <h3 class="text-center my-3">Welcome New User!</h3>
-            <div class="alert alert-primary mx-5 mb-2 fs-6" role="alert">If you are new here, <a class="alert-link" href="/about">learn about us.</a> or if you are a returning user <a class="alert-link" href="/users/login">login!</a>
-            </div>
-            <div class="mx-3 mx-sm-1">
-                {% include 'utils/message' %}
-            </div>
+
+            {{#if context.message }}
+                {{> utils/err_alert }}
+            {{else}}
+                <div class="alert alert-primary mx-5 mb-2 fs-6" role="alert">If you are new here, <a class="alert-link" href="/about">
+                    learn about us.</a> or if you are a returning user <a class="alert-link" href="/users/login">login!</a>
+                </div>
+            {{/if}}
+
             <div class="card-body">
                 <form class="mx-5" action="/users/signup" method="post">
+
+                    <div class="input-group mb-2">
+                        <span class="input-group-text" id="fn">First Name:</span>
+                        <input class="form-control " id="first-name" required name="first_name" type="text" aria-labelledby="fn">
+
+                    </div>
                     <div class="input-group mb-2">
                         <span class="input-group-text" id="ln">Last Name:</span>
-<!--                        <div class="col-4"><label for="last-name" class="form-label ">Last Name: </label></div>-->
                         <input class="form-control " id="last-name" required name="last_name" type="text" aria-labelledby="ln">
 
                     </div>
@@ -37,5 +41,5 @@
             </div>
         </div>
     </div>
-</body>
-</html>
+{{/inline}}
+{{~>layout~}}

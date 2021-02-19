@@ -34,9 +34,11 @@ pub struct NewUser<'a> {
     pub password: &'a str
 }
 
-#[derive(Insertable)]
+#[derive(Insertable, Associations)]
+#[belongs_to(User)]
 #[table_name="events"]
 pub struct NewEvent<'a> {
+    pub user_id: &'a i32,
     pub title: &'a str,
     pub body: &'a str,
     pub date: &'a NaiveDate

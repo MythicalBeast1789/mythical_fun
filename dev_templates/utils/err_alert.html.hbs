@@ -1,0 +1,9 @@
+<div class="mx-5 mb-2">
+    {{#if context.message}}
+        {{#if context.ok}}
+            <div class="alert alert-success" role="alert">{{context.message}}</div>
+        {{else}}
+            <div class="alert alert-danger" role="alert">{{context.message}}</div>
+        {{/if}}
+    {{/if}}
+</div>

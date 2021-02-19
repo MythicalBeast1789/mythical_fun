@@ -18,5 +18,5 @@ rust-argon2 = "0.8.3"
 [dependencies.rocket_contrib]
 version = "0.4.6"
 default-features = false
-features = ["json", "templates", "tera_templates", "serve"]
+features = ["json", "templates", "handlebars_templates","tera_templates", "serve", "diesel_postgres_pool"]
 

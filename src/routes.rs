@@ -1,6 +1,4 @@
-use rocket_contrib::templates::Template;
-
 pub mod events;
 mod structs;
+mod guards;
 pub mod users;
-

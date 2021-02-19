@@ -1,6 +1,8 @@
 pub mod models;
 pub mod schema;
 pub mod users;
+pub mod structs;
+pub mod events;
 
 use diesel::{PgConnection, Connection, RunQueryDsl};
 use crate::diesel::query_dsl::*;
@@ -27,7 +29,7 @@ pub fn establish_connection() -> PgConnection {
 
 pub fn list_events() -> Result<Vec<Event>, diesel::result::Error>{
     use schema::users::dsl::*;
-    use self::models::{User, Event};
+    use self::models::{User};
     let conn = establish_connection();
 
     // search for a events belonging to use...

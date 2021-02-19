@@ -1,0 +1,41 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+
+
+        <!--        Text on the far left-->
+
+        <a class="navbar-brand" href="#">MythicalCloud</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggle"
+                aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!--        Navtoggle button-->
+
+        <div class="collapse navbar-collapse" id="navbarToggle">
+            <ul class="navbar-nav mr-auto mt-2">
+                <!-- TODO: Maybe make link gen dynamic? -->
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/2021/">Pandemic Events</a>
+                </li>
+
+                <!-- TODO: make login and logout link dynamic -->
+                {{#if context.logged_in}}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/users/logout/">Logout</a>
+                    </li>
+                {{else}}
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/users/login/">Login</a>
+                    </li>
+
+                {{/if}}
+
+
+            </ul>
+        </div>
+    </div>
+</nav>

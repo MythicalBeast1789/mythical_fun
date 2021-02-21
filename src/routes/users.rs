@@ -2,7 +2,6 @@ use crate::routes::structs::*;
 use rocket_contrib::templates::Template;
 use rocket::request::{Form, FromForm};
 use rocket::http::{Cookies, Cookie};
-use rocket::State;
 use crate::DBConn;
 use rocket::response::Redirect;
 
@@ -31,16 +30,17 @@ pub fn signup_p(u_data:Form<NewUser>, db_conn: DBConn) -> Template{
     let user = crate::db::users::find_with_email(&u_data.email, &*db_conn);
     use rocket::response::Redirect;
     match user {
-        Ok(u) => {
+        Ok(_) => {
             Redirect::to("/users/login");
         }
         Err(err) =>  {
             use crate::db::structs::DBError;
             match err {
                 DBError::NoneFound => {
-                    if u_data.password.len() > 17 && u_data.password.len() > 7 {
+                    if u_data.password.len() < 17 && u_data.password.len() > 7 {
                         match crate::db::users::insert(&u_data.first_name, &u_data.last_name, &u_data.email, &u_data.password) {
-                            Ok(u) => {
+                            Ok(_) => {
+                                // TODO: login user who just created account wihtout redirect
                                 Redirect::to("/users/login");
                             },
                             Err(e) => {
@@ -54,7 +54,7 @@ pub fn signup_p(u_data:Form<NewUser>, db_conn: DBConn) -> Template{
                         context.message = String::from("hmm.. Please double check that password! Passwords must be between 8 and 18 characters long!");
                     }
                 },
-                all_other => {
+                _all_other => {
                     println!("Error creating user!");
                     context.ok = false;
                     context.message = String::from("Uh oh... Something went wrong... Please try again later...")
@@ -102,7 +102,7 @@ pub fn login_p(creds: Form<LoginCreds>, mut context:RequestContext, conn: DBConn
                 DBError::InvalidData | DBError::NoneFound => {
                     context.template_context.message = String::from("Incorrect username/password!")
                 },
-                all_other => {
+                _all_other => {
                     context.template_context.message = String::from("Hmm... Something went wrong! Please try again later!")
                 }
             }

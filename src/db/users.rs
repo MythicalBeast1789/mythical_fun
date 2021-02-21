@@ -2,8 +2,6 @@ use diesel::*;
 use super::establish_connection;
 use super::models::{User, NewUser};
 use std::env;
-use diesel::result::Error;
-use crate::DBConn;
 
 pub struct UserData {
     pub(crate) user_id: i32,
@@ -12,17 +10,6 @@ pub struct UserData {
     pub email: String,
     password: String
 }
-
-// pub fn db_test(u_email: &String, conn:&DBConn) -> String {
-//     use super::schema::users::dsl::*;
-//     let u = users.filter(email.eq(u_email)).limit(1).load::<User>(conn).expect("DB ERROR");
-//     for un in u {
-//         println!("first name: {}", un.first_name)
-//     };
-//     String::from("hello")
-//
-//
-// }
 
 // make sure you use the & operator so we don't take ownership out of scope!
 pub fn find_with_email(u_email:&String, conn: &PgConnection) -> Result<User, super::structs::DBError>{

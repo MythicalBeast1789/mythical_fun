@@ -1,12 +1,10 @@
 // this file containes structs only for use in ROUTES crate!
 
 use serde::{Serialize, };
-use rocket::request::{FromRequest, Outcome, self};
+use rocket::request::{FromRequest, Outcome};
 use rocket::response::Redirect;
 use rocket_contrib::templates::Template;
-use rocket::{Request, State};
-use rocket::outcome::IntoOutcome;
-use rocket::http::Cookies;
+use rocket::{Request};
 use crate::DBConn;
 
 #[derive(Debug, rocket::response::Responder)]
@@ -78,7 +76,7 @@ impl<'a, 'r> FromRequest<'a ,'r> for RequestContext {
     type Error = ();
 
     fn from_request(request: &'a Request<'r>) -> Outcome<RequestContext, Self::Error> {
-        let mut user_id = request.cookies()
+        let user_id = request.cookies()
             .get_private("user_id")
             .and_then(|cookie| cookie.value().parse().ok());
 

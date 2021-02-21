@@ -1,12 +1,11 @@
 use rocket_contrib::templates::Template;
 use crate::routes::structs::{TemplateContext, TempOrRedirect};
 use super::structs::*;
-use rocket::http::Cookies;
 use rocket::request::Form;
 use rocket::response::Redirect;
 
 #[rocket::post("/add", data="<event_data>")]
-pub fn add_p(event_data:Form<NewEvent>, mut request: RequestContext) -> TempOrRedirect {
+pub fn add_p(event_data:Form<NewEvent>, request: RequestContext) -> TempOrRedirect {
 
     let mut context = Context {
         context: TemplateContext {
@@ -24,7 +23,7 @@ pub fn add_p(event_data:Form<NewEvent>, mut request: RequestContext) -> TempOrRe
                 context.context.message = String::from("Added event");
                 TempOrRedirect::Template(Template::render("events/add", &context))
             },
-            Err(e) => {
+            Err(_) => {
                 context.context.message = String::from("Error adding event!");
                 TempOrRedirect::Template(Template::render("events/add", &context))
             }
@@ -36,7 +35,7 @@ pub fn add_p(event_data:Form<NewEvent>, mut request: RequestContext) -> TempOrRe
 }
 
 #[rocket::get("/add")]
-pub fn add_g(mut request:RequestContext) -> TempOrRedirect {
+pub fn add_g(request:RequestContext) -> TempOrRedirect {
 
     let mut context = Context{ context: TemplateContext {
         page: "Add event".to_string(),
@@ -96,7 +95,7 @@ pub fn list_events(request: RequestContext) -> Template {
                 }
                 DBError::InvalidUser => context.message = String::from("No user found!"),
                 DBError::DieselError(db) => {println!("database error: {}", db)},
-                all_other => println!("Something else happened")
+                _all_other => println!("Something else happened")
             }
         }
     };

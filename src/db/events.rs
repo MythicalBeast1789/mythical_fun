@@ -1,4 +1,3 @@
-use super::schema::{events, users};
 use super::structs::DBError;
 use super::models::{NewEvent, Event};
 use chrono::NaiveDate;
@@ -18,7 +17,6 @@ pub fn add_event(user_id:&i32, date:&String, title: &String, body:&String) -> Re
             Ok(evt)
         },
         Err(err) => {
-            use diesel::result::Error;
             println!("Error adding event {}",err);
          Err(DBError::DieselError(err))
 
